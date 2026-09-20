@@ -1,0 +1,1 @@
+import {expect,it} from 'vitest';import {NamespaceStack} from '../src/index.js';it('resolves a prefix',()=>{const x=new NamespaceStack();x.start({p:'urn:p'});expect(x.resolve('p:x').uri).toBe('urn:p')});
