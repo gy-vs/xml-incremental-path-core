@@ -1,2 +1,19 @@
-export type QName={prefix:string;local:string;uri:string};
-export class NamespaceStack{#frames:Record<string,string>[]=[{}];start(declarations:Record<string,string>){this.#frames.push({...this.#frames.at(-1),...declarations})}end(){if(this.#frames.length>1)this.#frames.pop()}resolve(name:string,attribute=false):QName{const [prefix='',local=name]=name.includes(':')?name.split(':',2):['',name];const uri=this.#frames.at(-1)?.[prefix]??'';return {prefix,local,uri:attribute?uri:uri}}}
+export { NamespaceStack } from './namespaces.js';
+export type { QName } from './namespaces.js';
+export { compilePath, PathSyntaxError } from './path.js';
+export type { CompiledPath, Step, NodeTest, Predicate, PathNamespaces, PositionClass } from './path.js';
+export {
+  PathProcessor,
+  MatchedElement,
+  BackpressureError,
+  attrKey,
+} from './engine.js';
+export type {
+  XmlHandler,
+  QueryHandle,
+  QueryOptions,
+  QueryStats,
+  OverflowStrategy,
+  ExpandedAttribute,
+} from './engine.js';
+export { XmlStreamReader, XmlParseError, decodeEntities } from './xml-reader.js';
